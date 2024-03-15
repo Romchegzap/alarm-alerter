@@ -11,7 +11,7 @@ class AlertsInUA extends AbstractAlertsAPIs
     const TOKEN = 'ab9cacdf5a808df5db00dc78afbd12775aa70b6fab2203';
     const URL = 'https://api.alerts.in.ua/v1/alerts/active.json';
 
-    const REGION_IDS = ["356", "20", "22"];
+    const REGION_IDS = ["12", "20", "22"];
 
     /**
      * @throws Exception
@@ -34,12 +34,17 @@ class AlertsInUA extends AbstractAlertsAPIs
         ]);
 
         $response = curl_exec($curl);
+        $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        curl_close($curl);
 
-        if ($response === false) {
-            throw new Exception('Ошибка cURL: ' . curl_error($curl));
+        if ($httpStatus !== 200) {
+            throw new Exception("Status: $httpStatus. " . $response);
         }
 
-        curl_close($curl);
+        if ($response === false) {
+            throw new Exception('cURL error: ' . curl_error($curl));
+        }
+
         return json_decode($response, true);
     }
 
