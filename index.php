@@ -1,6 +1,6 @@
 <?php
 
-use App\AlarmAPIs\AlertsInUA;
+use App\API\AlarmAPIs\AlertsInUA;
 use App\AlarmHandler;
 use App\Handlers\TelegramHandler;
 
@@ -10,7 +10,7 @@ ini_set('display_startup_errors', 1);
 
 require "vendor/autoload.php";
 
-var_dump(1);
+consoleInfo("Working..");
 
 $alarmHandler = new AlarmHandler();
 $alarmHandler->setAlarmAPI(new AlertsInUA());

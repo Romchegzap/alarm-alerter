@@ -1,13 +1,9 @@
 version: '3'
 
 services:
-  php:
-    image: php:8.1-cli
-    volumes:
-      - ./src:/var/www/html
-    depends_on:
-      - curl
-
-#  curl:
-#    image: curlimages/curl:latest
-#    command: ["tail", "-f", "/dev/null"]
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: alarm-alerter
+    tty: true

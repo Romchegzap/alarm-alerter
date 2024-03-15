@@ -4,7 +4,6 @@ namespace App\API\AlarmAPIs;
 
 use App\API\APIAdapters\APIAdapterInterface;
 use App\DTO\LocationObject;
-use Throwable;
 
 abstract class AbstractAlertsAPIs implements AlertsAPIsInterface
 {
@@ -17,15 +16,15 @@ abstract class AbstractAlertsAPIs implements AlertsAPIsInterface
      */
     public function getData(): array
     {
-        try {
-            $APIData = $this->fetchAPIData();
-            $APIData = $this->filterAPIData($APIData);
-            $adapter = $this->getAdapter($APIData);
-            return $adapter->getOutputData();
-        } catch (Throwable $exception) {
-            var_dump($exception->getMessage());
-            return [];
-        }
+        consoleText("Getting data by " . static::class . "...");
+
+        $APIData = $this->fetchAPIData();
+
+        consoleSuccess("Data fetched successfully.");
+
+        $APIData = $this->filterAPIData($APIData);
+        $adapter = $this->getAdapter($APIData);
+        return $adapter->getOutputData();
     }
 
     protected function filterAPIData(array $APIData): array

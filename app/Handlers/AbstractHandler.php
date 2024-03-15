@@ -43,9 +43,21 @@ abstract class AbstractHandler implements HandlerInterface
         return isset($this->locationsObjects[$inputLocationObject->location_id]);
     }
 
-    protected function updateObject(LocationObject $inputLocationObject)
+    protected function updateObject(LocationObject $inputLocationObject): void
     {
         $object = $this->getObject($inputLocationObject->location_id);
+        $object->currentAlarmStatus = $inputLocationObject->currentAlarmStatus;
+    }
+
+    protected function getInputLocationObjectsIDs(): array
+    {
+        $locationIds = [];
+
+        foreach ($this->inputLocationsObjects as $object) {
+            $locationIds[] = $object->location_id;
+        }
+
+        return $locationIds;
     }
 
     protected function addObject(LocationObject $inputLocationObject)

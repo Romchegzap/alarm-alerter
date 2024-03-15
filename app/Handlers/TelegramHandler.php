@@ -23,6 +23,12 @@ class TelegramHandler extends AbstractHandler
             return;
         }
 
+        $this->handleInputActive();
+        $this->handleInputNotActive();
+    }
+
+    private function handleInputActive(): void
+    {
         foreach ($this->inputLocationsObjects as $object) {
             if ($this->hasObject($object)) {
                 $this->updateObject($object);
@@ -33,16 +39,32 @@ class TelegramHandler extends AbstractHandler
         }
     }
 
+    private function handleInputNotActive()
+    {
+        $inputLocationObjectsIDs = $this->getInputLocationObjectsIDs();
+
+        $locationIDs = array_diff(array_keys($this->locationsObjects), $inputLocationObjectsIDs);
+
+        foreach ($locationIDs as $locationID) {
+            $object = $this->getObject($locationID);
+            $object->currentAlarmStatus = AlarmStatus::NOT_ACTIVE;
+        }
+    }
+
     private function handleSending(): void
     {
-        foreach($this->locationsObjects as $locationObject) {
+        foreach ($this->locationsObjects as $locationObject) {
             if ($locationObject->statusChanged()) {
                 try {
+                    consoleWarning('Sending to Telegram. Message: ' . $this->getMessage($locationObject));
                     $this->getSender()->send($this->getMessage($locationObject));
+                    consoleSuccess('Sent successfully.');
                     $locationObject->previousAlarmStatus = $locationObject->currentAlarmStatus;
                 } catch (Throwable $exception) {
-                    var_dump($exception->getMessage());
+                    consoleDanger('ERROR while sending: ' . $exception->getMessage());
                 }
+            } else {
+                consoleText("Status of $locationObject->title didnt change.");
             }
         }
     }

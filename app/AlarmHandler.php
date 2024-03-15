@@ -4,6 +4,7 @@ namespace App;
 
 use App\API\AlarmAPIs\AlertsAPIsInterface;
 use App\Handlers\HandlerInterface;
+use Throwable;
 
 class AlarmHandler
 {
@@ -28,10 +29,19 @@ class AlarmHandler
     public function work(): void
     {
         while (true) {
-            $data = $this->alarmAPI->getData();
+            try {
+                $data = $this->alarmAPI->getData();
+            } catch (Throwable $exception) {
+                consoleDanger("ERROR: " . $exception->getMessage());
+                sleep(self::CHECK_PERIOD_SEC);
+                continue;
+            }
+
             foreach ($this->handlers as $handler) {
                 $handler->setData($data)->doJob();
             }
+
+            consoleText('-------------------------------');
 
             sleep(self::CHECK_PERIOD_SEC);
         }

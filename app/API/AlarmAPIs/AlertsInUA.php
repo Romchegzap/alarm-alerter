@@ -11,7 +11,7 @@ class AlertsInUA extends AbstractAlertsAPIs
     const TOKEN = 'ab9cacdf5a808df5db00dc78afbd12775aa70b6fab2203';
     const URL = 'https://api.alerts.in.ua/v1/alerts/active.json';
 
-    const REGION_IDS = [356];
+    const REGION_IDS = ["356", "20", "22"];
 
     /**
      * @throws Exception

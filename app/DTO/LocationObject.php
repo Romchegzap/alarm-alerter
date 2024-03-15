@@ -2,7 +2,7 @@
 
 namespace App\DTO;
 
-use App\AlarmAPIs\AlarmStatus;
+use App\API\AlarmAPIs\AlarmStatus;
 
 class LocationObject
 {
