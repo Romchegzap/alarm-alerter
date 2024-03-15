@@ -6,8 +6,13 @@ use App\AlarmAPIs\AlarmStatus;
 
 class LocationObject
 {
-    public int|string $id;
+    public int|string $location_id;
     public string $title;
-    public ?AlarmStatus $previousAlarmStatus;
-    public ?AlarmStatus $currentAlarmStatus;
+    public AlarmStatus $previousAlarmStatus = AlarmStatus::NOT_ACTIVE;
+    public AlarmStatus $currentAlarmStatus = AlarmStatus::NOT_ACTIVE;
+
+    public function statusChanged(): bool
+    {
+        return $this->previousAlarmStatus !== $this->currentAlarmStatus;
+    }
 }

@@ -2,36 +2,35 @@
 
 namespace App\AlarmAPIs;
 
+use App\APIDataAdapters\APIDataAdapterInterface;
 use App\DTO\LocationObject;
 use Throwable;
 
 abstract class AbstractAlertsAPIs implements AlertsAPIsInterface
 {
+    abstract protected function fetchAPIData(): array;
+
+    abstract protected function getAdapter(array $APIData): APIDataAdapterInterface;
+
     /**
-     * @var LocationObject[]
+     * @return LocationObject[]
      */
-    protected array $locationObjects = [];
-
-    abstract protected function getAPIData(): array;
-
-    abstract protected function findLocationObjects(array $APIData): void;
-
-    public function proceed(): void
+    public function getData(): array
     {
         try {
-            $APIData = $this->getAPIData();
-            $this->findLocationObjects($APIData);
+            $APIData = $this->fetchAPIData();
+            $APIData = $this->filterAPIData($APIData);
+            $adapter = $this->getAdapter($APIData);
+            return $adapter->getOutputData();
         } catch (Throwable $exception) {
-            $message = $exception->getMessage();
-            echo $message;
-
-            $this->alarmStatus = null;
+            var_dump($exception->getMessage());
+            return [];
         }
     }
 
-    public function getLocationObjects(): ?array
+    protected function filterAPIData(array $APIData): array
     {
-        return $this->locationObjects;
+        return $APIData;
     }
 }
 

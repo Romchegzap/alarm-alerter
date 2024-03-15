@@ -3,8 +3,7 @@
 namespace App;
 
 use App\AlarmAPIs\AlertsAPIsInterface;
-use App\Senders\SenderInterface;
-use TelegramService;
+use App\Handlers\HandlerInterface;
 
 class AlarmHandler
 {
@@ -12,41 +11,27 @@ class AlarmHandler
     private AlertsAPIsInterface $alarmAPI;
 
     /**
-     * @var SenderInterface[]
+     * @var HandlerInterface[]
      */
-    private array $senders = [];
+    private array $handlers = [];
 
-    public function setAlarmAPI(AlertsAPIsInterface $alarmAPI)
+    public function setAlarmAPI(AlertsAPIsInterface $alarmAPI): void
     {
         $this->alarmAPI = $alarmAPI;
     }
 
-    public function setSender(SenderInterface $sender)
+    public function setHandler(HandlerInterface $handler)
     {
-        $this->senders[] = $sender;
+        $this->handlers[] = $handler;
     }
 
     public function work(): void
     {
-        $telegramService = new TelegramService();
-
-        foreach (range(1, 2) as $v) {
-//        while (true) {
-            $this->alarmAPI->proceed();
-            $relatedData = $this->alarmAPI->getLocationObjects();
-            $newAlarmStatus = $this->alarmAPI->isAlarmActive();
-
-            if (is_null($newAlarmStatus)) {
-                sleep(self::CHECK_PERIOD_SEC);
-                continue;
+        while (true) {
+            $data = $this->alarmAPI->getData();
+            foreach ($this->handlers as $handler) {
+                $handler->setData($data)->doJob();
             }
-
-            $telegramService->
-            $a = (new TelegramService($relatedData, $newAlarmStatus));
-
-//            foreach ($this->senders as $sender) {
-//                $sender->send($newAlarmStatus, $message);
-//            }
 
             sleep(self::CHECK_PERIOD_SEC);
         }

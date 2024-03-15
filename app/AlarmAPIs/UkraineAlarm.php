@@ -7,7 +7,7 @@ class UkraineAlarm extends AbstractAlertsAPIs
     const TOKEN = 'YOUR_APP_TOKEN';
     const URL = 'https://air-alarm-ukraine.p.rapidapi.com/statuses.json';
 
-    protected function getAPIData(): array
+    protected function fetchAPIData(): array
     {
         $curl = curl_init();
 

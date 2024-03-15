@@ -2,24 +2,14 @@
 
 namespace App\Senders;
 
-use App\AlarmAPIs\AlarmStatus;
+use Exception;
 
 class TelegramSender extends AbstractSender
 {
     const BOT_TOKEN = "7161232939:AAHFjh8uYEX3EkBG9Uz_w0jQTQ8VvPKE33U";
     const CHAT_ID = -4179215532;
 
-    protected function getMessage(AlarmStatus $alarmStatus): string
-    {
-        $locationTitle = $this->data['location_title'];
-
-        return match ($alarmStatus) {
-            AlarmStatus::ACTIVE => "🔴 $locationTitle - повітряна тривога!",
-            AlarmStatus::NOT_ACTIVE => "🟢 $locationTitle - відбій повітряної тривоги!",
-        };
-    }
-
-    public function proceedSending(string $message): bool
+    public function proceedSending(string $message): void
     {
         $getQuery = array(
             "chat_id"    => self::CHAT_ID,
@@ -41,6 +31,8 @@ class TelegramSender extends AbstractSender
         $httpStatus = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
 
-        return $httpStatus === 200;
+        if ($httpStatus !== 200) {
+            throw new Exception('Sending failed, status:' . $httpStatus);
+        }
     }
 }

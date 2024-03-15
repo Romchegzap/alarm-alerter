@@ -2,7 +2,11 @@
 
 namespace App\AlarmAPIs;
 
+use App\DTO\LocationObject;
+
 interface AlertsAPIsInterface {
-    public function proceed(): void;
-    public function getLocationObjects(): ?array;
+    /**
+     * @return LocationObject[]
+     */
+    public function getData(): array;
 }

@@ -2,27 +2,21 @@
 
 namespace App\AlarmAPIs;
 
-use App\DTO\LocationObject;
+use App\APIDataAdapters\AlertsInUADataAdapter;
+use App\APIDataAdapters\APIDataAdapterInterface;
 use Exception;
 
 class AlertsInUA extends AbstractAlertsAPIs
 {
     const TOKEN = 'ab9cacdf5a808df5db00dc78afbd12775aa70b6fab2203';
     const URL = 'https://api.alerts.in.ua/v1/alerts/active.json';
-//    const REGION_ID = 12;
-    const REGION_TITLE = 'Чернігівська область';
-    const REGION_ID = 25;
 
-    const REGION_IDS = [25];
-
-    const FIND_DATA = [
-        25 => 'Чернігівська область'
-    ];
+    const REGION_IDS = [356];
 
     /**
      * @throws Exception
      */
-    protected function getAPIData(): array
+    protected function fetchAPIData(): array
     {
         $curl = curl_init();
 
@@ -49,26 +43,16 @@ class AlertsInUA extends AbstractAlertsAPIs
         return json_decode($response, true);
     }
 
-    protected function findLocationObjects(array $APIData): void
+    protected function getAdapter(array $APIData): APIDataAdapterInterface
     {
-        foreach ($APIData['alerts'] as $alert) {
-            if (in_array(self::REGION_IDS, $alert['location_uid'])) {
+        return new AlertsInUADataAdapter($APIData);
+    }
 
-                if (!isset($this->locationObjects[$alert['location_uid']])) {
-                    $object = new LocationObject();
-                    $object->id = $alert['location_uid'];
-                    $object->title = $alert['location_title'];
-                    $object->previousAlarmStatus = AlarmStatus::NOT_ACTIVE;
-                    $object->currentAlarmStatus = AlarmStatus::ACTIVE;
-
-                    $this->locationObjects[$alert['location_uid']] = $object;
-                    continue;
-                }
-
-                $locationObject = $this->locationObjects[$alert['location_uid']];
-                $locationObject->previousAlarmStatus = $locationObject->currentAlarmStatus;
-                $locationObject->currentAlarmStatus = AlarmStatus::ACTIVE;
-            }
-        }
+    protected function filterAPIData(array $APIData): array
+    {
+        $APIData = $APIData['alerts'];
+        return array_filter($APIData, function ($location) {
+            return in_array($location['location_uid'], self::REGION_IDS);
+        });
     }
 }
