@@ -2,10 +2,16 @@
 
 namespace App\AlarmAPIs;
 
+
+use App\APIAdapters\APIAdapterInterface;
+use App\APIAdapters\UkraineAlarmAdapter;
+use Exception;
+
 class UkraineAlarm extends AbstractAlertsAPIs
 {
-    const TOKEN = 'YOUR_APP_TOKEN';
-    const URL = 'https://air-alarm-ukraine.p.rapidapi.com/statuses.json';
+    //TODO: Not finished
+//    const TOKEN = 'YOUR_APP_TOKEN';
+//    const URL = 'https://air-alarm-ukraine.p.rapidapi.com/statuses.json';
 
     protected function fetchAPIData(): array
     {
@@ -35,10 +41,8 @@ class UkraineAlarm extends AbstractAlertsAPIs
         return json_decode($response, true);
     }
 
-    protected function handleAPIData(array $APIData): AlarmStatus
+    protected function getAdapter(array $APIData): APIAdapterInterface
     {
-        // TODO: Implement handleAPIData() method.
-
-        return AlarmStatus::NOT_ACTIVE;
+        return new UkraineAlarmAdapter($APIData);
     }
 }

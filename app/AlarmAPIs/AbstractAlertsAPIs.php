@@ -2,7 +2,7 @@
 
 namespace App\AlarmAPIs;
 
-use App\APIDataAdapters\APIDataAdapterInterface;
+use App\APIAdapters\APIAdapterInterface;
 use App\DTO\LocationObject;
 use Throwable;
 
@@ -10,7 +10,7 @@ abstract class AbstractAlertsAPIs implements AlertsAPIsInterface
 {
     abstract protected function fetchAPIData(): array;
 
-    abstract protected function getAdapter(array $APIData): APIDataAdapterInterface;
+    abstract protected function getAdapter(array $APIData): APIAdapterInterface;
 
     /**
      * @return LocationObject[]

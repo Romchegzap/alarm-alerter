@@ -2,8 +2,8 @@
 
 namespace App\AlarmAPIs;
 
-use App\APIDataAdapters\AlertsInUADataAdapter;
-use App\APIDataAdapters\APIDataAdapterInterface;
+use App\APIAdapters\AlertsInUAAdapter;
+use App\APIAdapters\APIAdapterInterface;
 use Exception;
 
 class AlertsInUA extends AbstractAlertsAPIs
@@ -43,9 +43,9 @@ class AlertsInUA extends AbstractAlertsAPIs
         return json_decode($response, true);
     }
 
-    protected function getAdapter(array $APIData): APIDataAdapterInterface
+    protected function getAdapter(array $APIData): APIAdapterInterface
     {
-        return new AlertsInUADataAdapter($APIData);
+        return new AlertsInUAAdapter($APIData);
     }
 
     protected function filterAPIData(array $APIData): array
