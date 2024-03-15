@@ -1,9 +1,9 @@
 <?php
 
-namespace App\AlarmAPIs;
+namespace App\API\AlarmAPIs;
 
-use App\APIAdapters\AlertsInUAAdapter;
-use App\APIAdapters\APIAdapterInterface;
+use App\API\APIAdapters\AlertsInUAAdapter;
+use App\API\APIAdapters\APIAdapterInterface;
 use Exception;
 
 class AlertsInUA extends AbstractAlertsAPIs

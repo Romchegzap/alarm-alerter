@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\AlarmAPIs\AlertsAPIsInterface;
+use App\API\AlarmAPIs\AlertsAPIsInterface;
 use App\Handlers\HandlerInterface;
 
 class AlarmHandler

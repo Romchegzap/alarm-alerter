@@ -1,10 +1,10 @@
 <?php
 
-namespace App\AlarmAPIs;
+namespace App\API\AlarmAPIs;
 
 
-use App\APIAdapters\APIAdapterInterface;
-use App\APIAdapters\UkraineAlarmAdapter;
+use App\API\APIAdapters\APIAdapterInterface;
+use App\API\APIAdapters\UkraineAlarmAdapter;
 use Exception;
 
 class UkraineAlarm extends AbstractAlertsAPIs

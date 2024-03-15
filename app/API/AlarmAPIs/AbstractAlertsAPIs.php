@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AlarmAPIs;
+namespace App\API\AlarmAPIs;
 
-use App\APIAdapters\APIAdapterInterface;
+use App\API\APIAdapters\APIAdapterInterface;
 use App\DTO\LocationObject;
 use Throwable;
 

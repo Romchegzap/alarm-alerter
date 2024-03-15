@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AlarmAPIs;
+namespace App\API\AlarmAPIs;
 
 use App\DTO\LocationObject;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\APIAdapters;
+namespace App\API\APIAdapters;
 
-use App\AlarmAPIs\AlarmStatus;
+use App\API\AlarmAPIs\AlarmStatus;
 use App\DTO\LocationObject;
 
 class AlertsInUAAdapter extends AbstractAdapter

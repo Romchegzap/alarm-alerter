@@ -1,6 +1,6 @@
 <?php
 
-namespace App\APIAdapters;
+namespace App\API\APIAdapters;
 
 use App\DTO\LocationObject;
 

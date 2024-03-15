@@ -1,9 +1,7 @@
 <?php
 
-namespace App\APIAdapters;
+namespace App\API\APIAdapters;
 
-use App\AlarmAPIs\AlarmStatus;
-use App\DTO\LocationObject;
 
 class UkraineAlarmAdapter extends AbstractAdapter
 {

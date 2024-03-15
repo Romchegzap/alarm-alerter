@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AlarmAPIs;
+namespace App\API\AlarmAPIs;
 
 enum AlarmStatus: string
 {

@@ -2,7 +2,7 @@
 
 namespace App\Handlers;
 
-use App\AlarmAPIs\AlarmStatus;
+use App\API\AlarmAPIs\AlarmStatus;
 use App\DTO\LocationObject;
 use App\Senders\SenderInterface;
 use App\Senders\TelegramSender;
