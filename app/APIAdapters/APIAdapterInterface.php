@@ -4,7 +4,7 @@ namespace App\APIAdapters;
 
 use App\DTO\LocationObject;
 
-interface APIDataAdapterInterface
+interface APIAdapterInterface
 {
     /**
      * @return LocationObject[]

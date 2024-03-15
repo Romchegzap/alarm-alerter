@@ -4,7 +4,7 @@ namespace App\APIAdapters;
 
 use App\DTO\LocationObject;
 
-abstract class AbstractAdapter implements APIDataAdapterInterface
+abstract class AbstractAdapter implements APIAdapterInterface
 {
     protected array $inputData;
 

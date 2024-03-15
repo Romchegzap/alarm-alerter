@@ -5,7 +5,7 @@ namespace App\APIAdapters;
 use App\AlarmAPIs\AlarmStatus;
 use App\DTO\LocationObject;
 
-class AlertsInUADataAdapter extends AbstractAdapter
+class AlertsInUAAdapter extends AbstractAdapter
 {
     public function convert(): void
     {
