@@ -8,7 +8,7 @@ use Exception;
 
 class AlertsInUA extends AbstractAlertsAPIs
 {
-    const TOKEN = 'ab9cacdf5a808df5db00dc78afbd12775aa70b6fab2203';
+    const TOKEN = 'YOUR_TOKEN';
     const URL = 'https://api.alerts.in.ua/v1/alerts/active.json';
 
     const REGION_IDS = ["12", "20", "22"];
