@@ -34,8 +34,11 @@ class AlarmHandler
             } catch (Throwable $exception) {
                 consoleDanger("ERROR: " . $exception->getMessage());
                 sleep(self::CHECK_PERIOD_SEC);
+                consoleText('-------------------------------');
                 continue;
             }
+
+            consoleText("");
 
             foreach ($this->handlers as $handler) {
                 $handler->setData($data)->doJob();

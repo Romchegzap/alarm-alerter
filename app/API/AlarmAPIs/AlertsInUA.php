@@ -10,6 +10,11 @@ class AlertsInUA extends AbstractAlertsAPIs
 {
     const URL = 'https://api.alerts.in.ua/v1/alerts/active.json';
 
+    protected function APIName(): string
+    {
+        return "alerts.in.ua";
+    }
+
     /**
      * @throws Exception
      */

@@ -7,6 +7,8 @@ use App\DTO\LocationObject;
 
 abstract class AbstractAlertsAPIs implements AlertsAPIsInterface
 {
+    abstract protected function APIName(): string;
+
     abstract protected function fetchAPIData(): array;
 
     abstract protected function getAdapter(array $APIData): APIAdapterInterface;
@@ -16,7 +18,7 @@ abstract class AbstractAlertsAPIs implements AlertsAPIsInterface
      */
     public function getData(): array
     {
-        consoleText("Getting data by " . static::class . "...");
+        consoleInfo("Getting data by " . $this->APIName() . "...");
 
         $APIData = $this->fetchAPIData();
 

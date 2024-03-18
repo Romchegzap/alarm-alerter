@@ -21,14 +21,14 @@ class ViberHandler extends AbstractHandler
             $_ENV['VIBER_USER_ID'];
     }
 
-    //emojis available at https://decisiontele.com/news/620-emoji-viber-messaging-business-what-signs-choose-and-how-add-them-message-template-correctly.html not sure how to find other correct examples..
+    //emojis available at https://apps.timwhitlock.info/emoji/tables/unicode you can just copy them to code
     protected function getMessage(LocationObject $locationObject): string
     {
         $locationTitle = $locationObject->title;
 
         return match ($locationObject->currentAlarmStatus) {
-            AlarmStatus::ACTIVE => "(speaker) $locationTitle - повітряна тривога!",
-            AlarmStatus::NOT_ACTIVE => "(speaker) $locationTitle - відбій повітряної тривоги!",
+            AlarmStatus::ACTIVE => "🔴 $locationTitle - повітряна тривога!",
+            AlarmStatus::NOT_ACTIVE => "🟢️ $locationTitle - відбій повітряної тривоги!",
         };
     }
 

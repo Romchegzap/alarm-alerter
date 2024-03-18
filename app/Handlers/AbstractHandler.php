@@ -40,7 +40,7 @@ abstract class AbstractHandler implements HandlerInterface
     public function doJob(): void
     {
         $handlerName = $this->handlerName();
-        consoleInfo("Handling $handlerName");
+        consoleInfoLight("Handling $handlerName");
 
         if ($this->missEnvParam()) {
             consoleWarning("Environment parameters were not configured for $handlerName.. skipping..");

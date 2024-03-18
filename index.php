@@ -7,7 +7,7 @@ use App\Handlers\ViberHandler;
 
 require_once "settings.php";
 
-consoleInfo("Working..");
+consoleText("Working...");
 
 $alarmHandler = new AlarmHandler();
 $alarmHandler->setAlarmAPI(new AlertsInUA());

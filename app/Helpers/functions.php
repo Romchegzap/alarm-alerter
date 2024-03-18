@@ -29,3 +29,9 @@ if (!function_exists('consoleWarning')) {
         echo date("d-m-Y H:i:s") . ": \033[33m$data\033[0m\n";
     }
 }
+
+if (!function_exists('consoleInfoLight')) {
+    function consoleInfoLight($data) {
+        echo date("d-m-Y H:i:s") . ": \033[36m$data\033[0m\n";
+    }
+}
