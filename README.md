@@ -1,3 +1,5 @@
+# Alarm Alerter
+
 Setup alerts.in.ua API:
 
 - go to https://alerts.in.ua/api-request and get TOKEN
