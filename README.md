@@ -20,20 +20,19 @@ Telegram setup is done.
 Use this documentation(https://developers.viber.com/docs/tools/channels-post-api) to get all variables for the Viber API
 - find your VIBER_AUTH_TOKEN from Viber Channel and set to docker-compose.yml
 - use https://chatapi.viber.com/pa/set_webhook to set a webhook
-
-    {
-        "url":"https://my.host.com",
-        "auth_token":"your_auth_token"
-    }
-
+```
+{
+    "url":"https://my.host.com",
+    "auth_token":"your_auth_token"
+}
+```
 read documentation I mentioned above
 - make this POST request https://chatapi.viber.com/pa/get_account_info 
-
-
-    {
-        "auth_token":"your_auth_token"
-    }
-
+```
+{
+    "auth_token":"your_auth_token"
+}
+```
 
 Find your user id in response and set it to VIBER_USER_ID
 
