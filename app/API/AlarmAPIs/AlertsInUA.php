@@ -8,7 +8,6 @@ use Exception;
 
 class AlertsInUA extends AbstractAlertsAPIs
 {
-    const TOKEN = 'YOUR_TOKEN';
     const URL = 'https://api.alerts.in.ua/v1/alerts/active.json';
 
     const REGION_IDS = ["12", "20", "22"];
@@ -29,7 +28,7 @@ class AlertsInUA extends AbstractAlertsAPIs
             CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST  => "GET",
             CURLOPT_HTTPHEADER     => [
-                'Authorization: Bearer ' . self::TOKEN
+                'Authorization: Bearer ' . $_ENV['ALERTS_IN_UA_TOKEN']
             ],
         ]);
 

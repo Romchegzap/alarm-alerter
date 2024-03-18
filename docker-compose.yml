@@ -7,3 +7,6 @@ services:
       dockerfile: Dockerfile
     container_name: alarm-alerter
     tty: true
+    environment:
+      - ALERTS_IN_UA_TOKEN=
+      - TELEGRAM_BOT_TOKEN=

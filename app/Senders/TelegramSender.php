@@ -6,7 +6,6 @@ use Exception;
 
 class TelegramSender extends AbstractSender
 {
-    const BOT_TOKEN = "7161232939:AAHFjh8uYEX3EkBG9Uz_w0jQTQ8VvPKE33U";
     const CHAT_ID = -4179215532;
 
     public function proceedSending(string $message): void
@@ -20,7 +19,7 @@ class TelegramSender extends AbstractSender
         $curl = curl_init();
 
         curl_setopt_array($curl, [
-            CURLOPT_URL            => "https://api.telegram.org/bot" . self::BOT_TOKEN . "/sendMessage?" . http_build_query($getQuery),
+            CURLOPT_URL            => "https://api.telegram.org/bot" . $_ENV['TELEGRAM_BOT_TOKEN'] . "/sendMessage?" . http_build_query($getQuery),
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_TIMEOUT        => 15,
             CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
