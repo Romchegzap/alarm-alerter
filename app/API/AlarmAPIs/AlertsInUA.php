@@ -10,8 +10,6 @@ class AlertsInUA extends AbstractAlertsAPIs
 {
     const URL = 'https://api.alerts.in.ua/v1/alerts/active.json';
 
-    const REGION_IDS = ["12", "20", "22"];
-
     /**
      * @throws Exception
      */
@@ -55,8 +53,10 @@ class AlertsInUA extends AbstractAlertsAPIs
     protected function filterAPIData(array $APIData): array
     {
         $APIData = $APIData['alerts'];
-        return array_filter($APIData, function ($location) {
-            return in_array($location['location_uid'], self::REGION_IDS);
+        $trackedLocationUIDs = json_decode($_ENV['LOCATION_UIDS'], true);
+
+        return array_filter($APIData, function ($location) use ($trackedLocationUIDs) {
+            return in_array($location['location_uid'], (array)$trackedLocationUIDs);
         });
     }
 }

@@ -14,6 +14,12 @@ Setup Telegram:
 - find chat_id of your channel at https://t.me/username_to_id_bot and set it to TELEGRAM_CHAT_ID variable in docker-composer.yaml
 - set messages TelegramHandler.php in method getMessage()
 
+https://developers.viber.com/docs/tools/channels-post-api  
+Setup Viber:
+- 
+-
+-
+
 To start alarm-alerter:
 
     docker compose up

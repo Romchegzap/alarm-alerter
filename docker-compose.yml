@@ -8,6 +8,12 @@ services:
     container_name: alarm-alerter
     tty: true
     environment:
+      #API
       - ALERTS_IN_UA_TOKEN=
+      - LOCATION_UIDS=["12","20","22"]
+      #TELEGRAM
       - TELEGRAM_BOT_TOKEN=
       - TELEGRAM_CHAT_ID=
+      #VIBER
+      - VIBER_AUTH_TOKEN=
+      - VIBER_USER_ID=
