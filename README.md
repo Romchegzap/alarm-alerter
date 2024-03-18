@@ -21,7 +21,6 @@ Use this documentation(https://developers.viber.com/docs/tools/channels-post-api
 - find your VIBER_AUTH_TOKEN from Viber Channel and set to docker-compose.yml
 - use https://chatapi.viber.com/pa/set_webhook to set a webhook
 
-
     {
         "url":"https://my.host.com",
         "auth_token":"your_auth_token"
