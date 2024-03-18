@@ -6,12 +6,10 @@ use Exception;
 
 class TelegramSender extends AbstractSender
 {
-    const CHAT_ID = -4179215532;
-
     public function proceedSending(string $message): void
     {
         $getQuery = array(
-            "chat_id"    => self::CHAT_ID,
+            "chat_id"    => $_ENV['TELEGRAM_CHAT_ID'],
             "text"       => $message,
             "parse_mode" => "html"
         );

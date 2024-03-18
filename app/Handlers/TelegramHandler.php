@@ -84,6 +84,4 @@ class TelegramHandler extends AbstractHandler
     {
         return new TelegramSender();
     }
-
-
 }

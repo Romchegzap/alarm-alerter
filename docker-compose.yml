@@ -10,3 +10,4 @@ services:
     environment:
       - ALERTS_IN_UA_TOKEN=
       - TELEGRAM_BOT_TOKEN=
+      - TELEGRAM_CHAT_ID=
